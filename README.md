@@ -1,2 +1,1 @@
-# cedp-project
-Proyecto de final del curso de Programación Web.
+https://loberock.github.io/cedp-project/index.html
