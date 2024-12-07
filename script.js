@@ -1,5 +1,6 @@
 // CABECERA DINÁMICA
 var header = document.getElementById('Header'); // Seleccionamos el header
+var menu = document.getElementById('Menu');// Seleccionamos el menu
 var path = window.location.pathname; // Obtenemos la ruta actual
 
 // Lógica para la página "INICIO"
@@ -11,29 +12,20 @@ if (path.includes('index.html')) {
         var fondoHeight = fondo.offsetHeight; // Altura de la sección inicial
 
         if (scroll >= fondoHeight) {
-            header.style.backgroundColor = 'rgba(255, 255, 255, 1)'; // Fondo blanco sólido
+            header.style.backgroundColor = 'rgba(255, 255, 255, 1)'; // Fondo blanco
+            menu.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+            //menu.style.boxShadow = 'none';
         } else {
             header.style.backgroundColor = 'transparent'; // Fondo transparente al inicio
+            menu.style.backgroundColor = 'transparent';
+            //menu.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.3)';
         }
     });
 
 } else {
     // Lógica para las demás páginas (como "NOSOTROS")
-    header.style.backgroundColor = 'rgba(255, 255, 255, 1)'; // Al cargar la página, el header tendrá fondo blanco
-    header.style.position = 'relative'; // Al principio no está fijo sobre el contenido
-
-    window.addEventListener('scroll', () => {
-        var scroll = window.scrollY;
-
-        if (scroll > 10) {
-            header.style.position = 'fixed'; // Se fija después de scrollear
-            header.style.top = '0';
-            header.style.zIndex = '9999'; // Se asegura de estar encima del contenido
-        } else {
-            header.style.position = 'relative'; // Vuelve a ser relativo al principio
-            header.style.zIndex = '1'; // No se muestra sobre el contenido inicialmente
-        }
-    });
+    header.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+    menu.style.backgroundColor = 'rgba(255, 255, 255, 1)';
 }
 
 // MENÚ SELECCIONADO
