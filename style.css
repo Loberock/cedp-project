@@ -25,14 +25,14 @@ body {
 /*DISEÑO DE LA CABECERA*/
 header {
     width: 100%;
-    position: fixed;
+    height: 100px;
+    padding: 0 5%;
     top: 0;
     left: 0;
+    position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 5%;
-    height: 100px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     z-index: 9999;
     /* Asegura que el header esté arriba */
@@ -48,6 +48,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.3s ease, position 0.3s ease;
 }
 
 .item {
@@ -85,6 +86,7 @@ header {
     cursor: pointer;
     transform: scale(1);
     transition: transform 0.3s ease;
+    display: none;
 }
 
 .btn a {
@@ -121,6 +123,8 @@ label {
     .menu {
         padding: 30px;
         margin: 0;
+        /*width: 200px;
+        margin-left: 80%;*/
     }
 
     label {
@@ -132,16 +136,17 @@ label {
         top: 100%;
         left: 0;
         right: 0;
-        background-color: rgba(255, 255, 255, 255);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         display: none;
     }
 
     .item {
-        margin: 0 0 20px 0;
+        margin: 0 0 20px 20px;
         width: 100%;
     }
 
     .btn {
+        margin: 0 0 0 20px;
         width: 100px;
     }
 
@@ -152,7 +157,7 @@ label {
 
 /*DISEÑO DE LA IMAGEN DE FONDO*/
 .fondo {
-    background: url(fondo.jpg) center center / cover no-repeat;
+    background: url(/IMG/fondo.jpg) center center / cover no-repeat;
     height: 100vh;
 }
 
@@ -173,6 +178,19 @@ label {
     }
 }
 
+/*DEISEÑO DE LOS TÍTULOS*/
+.title {
+    margin-top: 100px;
+    padding: 20px 0;
+    text-align: center;
+    background-color: #0056b3;
+}
+
+.title h1 {
+    color: #ffffff;
+    font-size: 35px;
+}
+
 /*DISEÑO DE NOSOTROS*/
 .nosotros {
     display: flex;
@@ -184,7 +202,7 @@ label {
     margin: 30px auto;
     /* Centrar horizontalmente */
     padding: 30px;
-    gap: 20px;
+    gap: 40px;
     /* Espaciado entre texto e imagen */
 }
 
@@ -203,6 +221,7 @@ label {
     font-size: 1.2rem;
     line-height: 1.6;
     margin-bottom: 20px;
+    text-align: justify;
 }
 
 .btn-nosotros {
@@ -236,7 +255,7 @@ label {
     max-width: 100%;
     /* Imagen responsiva */
     height: auto;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 @media (max-width: 991px) {
@@ -253,7 +272,51 @@ label {
     .texto-nosotros {
         flex: unset;
         /* Quitar el ajuste de flex */
-        max-width: 700px;
+        max-width: 650px;
+    }
+
+    .imagen-nosotros img {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .nosotros {
+        flex-direction: column;
+        /* Cambiar a una sola columna */
+        align-items: center;
+        text-align: center;
+        /* Centrar el texto */
+        gap: 30px;
+        /* Mayor espacio entre elementos */
+    }
+
+    .texto-nosotros {
+        flex: unset;
+        /* Quitar el ajuste de flex */
+        max-width: 600px;
+    }
+
+    .imagen-nosotros img {
+        max-width: 85%;
+    }
+}
+
+@media (max-width: 480px) {
+    .nosotros {
+        flex-direction: column;
+        /* Cambiar a una sola columna */
+        align-items: center;
+        text-align: center;
+        /* Centrar el texto */
+        gap: 30px;
+        /* Mayor espacio entre elementos */
+    }
+
+    .texto-nosotros {
+        flex: unset;
+        /* Quitar el ajuste de flex */
+        max-width: 350px;
     }
 
     .imagen-nosotros img {
@@ -265,7 +328,7 @@ label {
 .porque-cedpsac {
     text-align: center;
     background-color: #f8f8f8;
-    padding: 50px 20px;
+    padding: 50px;
 }
 
 .porque-cedpsac h2 {
@@ -280,25 +343,24 @@ label {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    max-width: 1050px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
 /* Tarjeta individual */
 .tarjeta {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    text-align: left;
-    /*transition: transform 0.3s ease;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
     /* Efecto hover */
 }
 
-/*.tarjeta:hover {
+.tarjeta:hover {
     transform: translateY(-5px);
-    /* Elevar ligeramente al pasar el mouse
-}*/
+    /* Elevar ligeramente al pasar el mouse*/
+}
 
 .icono {
     font-size: 2.5rem;
@@ -314,7 +376,7 @@ label {
 }
 
 .tarjeta p {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #333333;
     line-height: 1.6;
     text-align: center;
@@ -565,7 +627,7 @@ label {
 }
 
 .footer-links ul li a:hover {
-    color: #0056b3;
+    color: #0073e6;
     padding-left: 6px;
 }
 
@@ -586,7 +648,7 @@ label {
 
 .social-link a:hover {
     color: #ffffff;
-    background-color: #0056b3;
+    background-color: #0073e6;
     transform: scale(1.1);
 }
 
@@ -615,19 +677,81 @@ label {
     }
 }
 
-/*@media(max-width : 768px) {
-    .footer-row {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .footer-logo,
-    .footer-links {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-}*/
-
 /*PÁGINA DE NOSOTROS*/
 
 /*DISEÑO DE MISIÓN Y VISIÓN*/
+.mision-vision {
+    background-color: #ffffff;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    color: #0056b3;
+}
+
+.mision-vision-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.info {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 450px;
+    text-align: left;
+    transition: transform 0.3s ease;
+    /* Efecto hover */
+}
+
+.info:hover {
+    transform: translateY(-5px);
+    /* Elevar ligeramente al pasar el mouse*/
+}
+
+.info-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.info-text {
+    padding: 20px;
+}
+
+.info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #0073e6;
+    text-align: center;
+}
+
+.info p,
+.info ul {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.info ul li {
+    margin: 10px 0;
+}
+
+.info ul li strong {
+    color: #333;
+}
+
+/*RESPONSIVE DE MISIÓN, VISIÓN Y VALORES*/
+@media (max-width: 768px) {
+    .mision-vision-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
