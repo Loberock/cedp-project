@@ -157,7 +157,7 @@ label {
 
 /*DISEÑO DE LA IMAGEN DE FONDO*/
 .fondo {
-    background: url(/IMG/fondo.jpg) center center / cover no-repeat;
+    background: url(fondo.jpg) center center / cover no-repeat;
     height: 100vh;
 }
 
