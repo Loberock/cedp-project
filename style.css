@@ -1,54 +1,49 @@
-/*RESET DE LA WEB*/
+/* RESET DE LA WEB */
 * {
     margin: 0;
     padding: 0;
-    list-style: none;
     box-sizing: border-box;
     list-style: none;
 }
 
-/*DISEÑO DEL BODY*/
+/* DISEÑO DEL BODY */
 body {
-    position: relative;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/*CADA SECCIÓN EN SU LUGAR*/
+/* CADA SECCIÓN EN SU LUGAR */
 .container {
     min-height: 100dvh;
     display: grid;
     grid-template-rows: auto 1fr auto;
 }
 
-/*PÁGINA DE INICIO*/
+/* PÁGINA DE INICIO */
 
-/*DISEÑO DE LA CABECERA*/
+/* DISEÑO DE LA CABECERA */
 header {
     width: 100%;
     height: 100px;
     padding: 0 5%;
+    position: fixed;
     top: 0;
     left: 0;
-    position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     z-index: 9999;
-    /* Asegura que el header esté arriba */
-    transition: background-color 0.3s ease, position 0.3s ease, z-index 0.3s ease;
-    /* Suaviza las transiciones en el fondo, la posición y el z-index */
+    transition: background-color 0.3s ease, position 0.3s ease;
 }
 
 .logo {
-    height: 90px;
+    height: 80px;
 }
 
 .menu {
     display: flex;
-    justify-content: center;
     align-items: center;
-    transition: background-color 0.3s ease, position 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .item {
@@ -60,12 +55,11 @@ header {
 
 .item a {
     text-decoration: none;
-    color: #333333;
+    color: #000;
 }
 
 .item:hover {
     transform: translateY(-3px);
-    /* Efecto de elevación */
 }
 
 .item:hover a {
@@ -77,16 +71,59 @@ header {
     border-bottom: 2px solid #f26e00;
 }
 
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    cursor: default;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: transparent;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    list-style: none;
+    padding: 10px 0;
+    z-index: 1000;
+    border-radius: 5px;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-menu li {
+    padding: 5px 20px;
+}
+
+.item .dropdown-menu li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+}
+
+.dropdown-menu li a:hover {
+    color: #0056b3;
+}
+
+.dropdown-menu li a.active {
+    color: #f26e00;
+    border-bottom: 2px solid #f26e00;
+}
+
 .btn {
     padding: 10px 24px;
     border-radius: 30px;
     font-size: 18px;
     font-weight: bold;
-    background-color: #0056b3;
+    background: linear-gradient(130deg, skyblue, blue);
     cursor: pointer;
-    transform: scale(1);
-    transition: transform 0.3s ease;
-    display: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .btn a {
@@ -95,9 +132,8 @@ header {
 }
 
 .btn:hover {
-    background-color: #000cb3;
+    background: linear-gradient(130deg, blue, skyblue);
     transform: scale(1.1);
-    /* Agranda el botón un 10% */
 }
 
 .btn:hover a {
@@ -109,35 +145,30 @@ header {
 }
 
 .menu-icono {
-    width: 25px;
+    width: 30px;
 }
 
+/* Solo visible en responsive */
 label {
     cursor: pointer;
     display: none;
-    /* Solo visible en responsive */
 }
 
-/*RESPONSIVE DE LA CABECERA*/
+/* RESPONSIVE DE LA CABECERA */
 @media(max-width : 991px) {
     .menu {
         padding: 30px;
-        margin: 0;
-        /*width: 200px;
-        margin-left: 80%;*/
-    }
-
-    label {
-        display: initial;
-    }
-
-    .menu {
         position: absolute;
+        align-items: flex-start;
         top: 100%;
         left: 0;
         right: 0;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         display: none;
+    }
+
+    label {
+        display: block;
     }
 
     .item {
@@ -147,38 +178,109 @@ label {
 
     .btn {
         margin: 0 0 0 20px;
-        width: 100px;
+        width: 130px;
     }
 
     #menu:checked~.menu {
-        display: initial;
+        display: flex;
+        /* Más consistente que "initial" */
+        flex-direction: column;
+    }
+
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        padding: 0;
+        margin-top: 10px;
+        width: 150px;
+    }
+
+    .dropdown-menu li {
+        padding: 10px 20px;
     }
 }
 
-/*DISEÑO DE LA IMAGEN DE FONDO*/
-.fondo {
-    background: url(fondo.jpg) center center / cover no-repeat;
+/* DISEÑO DEL SLIDER */
+.slider {
+    position: relative;
+    overflow: hidden;
     height: 100vh;
 }
 
-/*RESPONSIVE DE LA IMAGEN DE FONDO*/
+.slides {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    flex: 1 0 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Botones de navegación */
+button.prev,
+button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 5px;
+}
+
+button.prev {
+    left: 10px;
+}
+
+button.next {
+    right: 10px;
+}
+
+button.prev:hover,
+button.next:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
-    .fondo {
-        background-position: top center;
-        height: auto;
-        min-height: 80vh;
+    .slider {
+        height: 80vh;
+    }
+
+    .slide {
+        height: 80vh;
+    }
+
+    button.prev,
+    button.next {
+        font-size: 1.5rem;
     }
 }
 
 @media (max-width: 480px) {
-    .fondo {
-        background-position: top center;
-        height: auto;
-        min-height: 60vh;
+    .slider {
+        height: 60vh;
+    }
+
+    .slide {
+        height: 60vh;
+    }
+
+    button.prev,
+    button.next {
+        font-size: 1rem;
     }
 }
 
-/*DEISEÑO DE LOS TÍTULOS*/
+/* DISEÑO DE LOS TÍTULOS */
 .title {
     margin-top: 100px;
     padding: 20px 0;
@@ -187,23 +289,146 @@ label {
 }
 
 .title h1 {
-    color: #ffffff;
+    color: #fff;
     font-size: 35px;
+    padding: 0 50px;
 }
 
-/*DISEÑO DE NOSOTROS*/
+/* FORMULARIO */
+.formulario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 150px 50px 50px 50px;
+    background: linear-gradient(130deg, skyblue, blue);
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.form-container h1 {
+    color: #0056b3;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-container p {
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group span {
+    font-size: 1rem;
+    color: #333;
+    padding: 10px 0 3px 0;
+}
+
+.form-group select,
+.form-group textarea,
+.form-group input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    resize: none;
+    transition: border-color 0.3s;
+}
+
+.form-group select:focus,
+.form-group textarea:focus,
+.form-group input:focus {
+    border-color: #0056b3;
+}
+
+form .btn-enviar {
+    margin: 15px auto 0 auto;
+    padding: 15px;
+    width: 100%;
+    max-width: 200px;
+    display: block;
+    text-align: center;
+    background: linear-gradient(130deg, skyblue, blue);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form .btn-enviar:hover {
+    background: linear-gradient(130deg, blue, skyblue);
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: none;
+}
+
+.error-message.active {
+    display: block;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 15px;
+    }
+
+    .form-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .form-container p,
+    .form-group span {
+        font-size: 0.9rem;
+    }
+
+    .form-group select,
+    .form-group textarea,
+    .form-group input {
+        padding: 8px;
+    }
+
+    form .btn-enviar {
+        font-size: 14px;
+        margin: auto;
+        padding: 10px;
+    }
+}
+
+/* DISEÑO DE NOSOTROS */
 .nosotros {
     display: flex;
-    /* Para colocar texto e imagen en columnas */
     justify-content: space-between;
     align-items: center;
-    /* Alinear verticalmente */
     max-width: 1200px;
     margin: 30px auto;
-    /* Centrar horizontalmente */
     padding: 30px;
     gap: 40px;
-    /* Espaciado entre texto e imagen */
 }
 
 .texto-nosotros {
@@ -232,9 +457,7 @@ label {
     padding: 10px 24px;
     border-radius: 30px;
     font-weight: bold;
-    transform: scale(1);
     transition: transform 0.3s ease;
-    /* Efecto hover */
 }
 
 .btn-nosotros:hover {
@@ -242,10 +465,8 @@ label {
     transform: scale(1.1);
 }
 
-/* Estilo de la imagen */
 .imagen-nosotros {
     flex: 1;
-    /* Ajustar al espacio */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -253,78 +474,24 @@ label {
 
 .imagen-nosotros img {
     max-width: 100%;
-    /* Imagen responsiva */
     height: auto;
     border-radius: 15px;
 }
 
+/* RESPONSIVE */
 @media (max-width: 991px) {
     .nosotros {
         flex-direction: column;
-        /* Cambiar a una sola columna */
-        align-items: center;
         text-align: center;
-        /* Centrar el texto */
         gap: 30px;
-        /* Mayor espacio entre elementos */
     }
 
     .texto-nosotros {
-        flex: unset;
-        /* Quitar el ajuste de flex */
-        max-width: 650px;
-    }
-
-    .imagen-nosotros img {
-        max-width: 90%;
+        max-width: 750px;
     }
 }
 
-@media (max-width: 768px) {
-    .nosotros {
-        flex-direction: column;
-        /* Cambiar a una sola columna */
-        align-items: center;
-        text-align: center;
-        /* Centrar el texto */
-        gap: 30px;
-        /* Mayor espacio entre elementos */
-    }
-
-    .texto-nosotros {
-        flex: unset;
-        /* Quitar el ajuste de flex */
-        max-width: 600px;
-    }
-
-    .imagen-nosotros img {
-        max-width: 85%;
-    }
-}
-
-@media (max-width: 480px) {
-    .nosotros {
-        flex-direction: column;
-        /* Cambiar a una sola columna */
-        align-items: center;
-        text-align: center;
-        /* Centrar el texto */
-        gap: 30px;
-        /* Mayor espacio entre elementos */
-    }
-
-    .texto-nosotros {
-        flex: unset;
-        /* Quitar el ajuste de flex */
-        max-width: 350px;
-    }
-
-    .imagen-nosotros img {
-        max-width: 85%;
-    }
-}
-
-/*DISEÑO DE POR QUÉ CEDPSAC*/
+/* DISEÑO DE POR QUÉ CEDPSAC */
 .porque-cedpsac {
     text-align: center;
     background-color: #f8f8f8;
@@ -354,12 +521,10 @@ label {
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
-    /* Efecto hover */
 }
 
 .tarjeta:hover {
     transform: translateY(-5px);
-    /* Elevar ligeramente al pasar el mouse*/
 }
 
 .icono {
@@ -370,42 +535,28 @@ label {
 
 .tarjeta h3 {
     font-size: 1.5rem;
-    color: #333333;
+    color: #333;
     margin-bottom: 10px;
     text-align: center;
 }
 
 .tarjeta p {
     font-size: 1.1rem;
-    color: #333333;
+    color: #333;
     line-height: 1.6;
     text-align: center;
     padding: 0 20px;
 }
 
-@media (max-width: 991px) {
-    .porque-cedpsac h2 {
-        grid-template-columns: repeat(1, 1fr);
-    }
-
+/* RESPONSIVE */
+@media (max-width: 768px) {
     .tarjetas {
         max-width: 500px;
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: 1fr;
     }
 }
 
-@media (max-width: 480px) {
-    .porque-cedpsac h2 {
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .tarjetas {
-        max-width: 350px;
-        grid-template-columns: repeat(1, 1fr);
-    }
-}
-
-/*DISEÑO DE CURSOS*/
+/* DISEÑO DE CURSOS */
 .nuestros-cursos {
     text-align: center;
     padding: 50px 20px;
@@ -440,7 +591,7 @@ label {
 }
 
 .curso h3 {
-    color: #333333;
+    color: #333;
     font-size: 1.2rem;
     margin-top: 15px;
     text-transform: uppercase;
@@ -455,9 +606,7 @@ label {
     text-decoration: none;
     font-weight: bold;
     border-radius: 30px;
-    transform: scale(1);
     transition: transform 0.3s ease;
-    /* Efecto hover */
 }
 
 .btn-cursos:hover {
@@ -465,14 +614,12 @@ label {
     transform: scale(1.1);
 }
 
-/*RESPONSIVE DE CURSOS*/
-
+/* RESPONSIVE DE CURSOS */
 @media (max-width: 991px) {
     .curso {
         flex: 1 1 calc(50% - 20px);
         /* Dos columnas */
         max-width: 305px;
-        text-align: center;
     }
 }
 
@@ -481,11 +628,10 @@ label {
         flex: 1 1 100%;
         /* Una columna */
         max-width: 355px;
-        text-align: center;
     }
 }
 
-/*DISEÑO DE DIPLOMADOS*/
+/* DISEÑO DE DIPLOMADOS */
 .nuestros-diplomados {
     text-align: center;
     padding: 50px 20px;
@@ -507,7 +653,6 @@ label {
 
 .diplomado {
     flex: 1 1 calc(25% - 20px);
-    /* Cuatro columnas */
     max-width: 300px;
     text-align: center;
 }
@@ -520,7 +665,7 @@ label {
 }
 
 .diplomado h3 {
-    color: #333333;
+    color: #333;
     font-size: 1.2rem;
     margin-top: 15px;
     text-transform: uppercase;
@@ -535,9 +680,7 @@ label {
     text-decoration: none;
     font-weight: bold;
     border-radius: 30px;
-    transform: scale(1);
     transition: transform 0.3s ease;
-    /* Efecto hover */
 }
 
 .btn-diplomados:hover {
@@ -545,32 +688,25 @@ label {
     transform: scale(1.1);
 }
 
-/*RESPONSIVE DE DIPLOMADOS*/
-
+/* RESPONSIVE */
 @media (max-width: 991px) {
     .diplomado {
         flex: 1 1 calc(50% - 20px);
-        /* Dos columnas */
         max-width: 305px;
-        text-align: center;
     }
 }
 
 @media (max-width: 768px) {
     .diplomado {
         flex: 1 1 100%;
-        /* Una columna */
         max-width: 355px;
-        text-align: center;
     }
 }
 
-/*DISEÑO DE AUSPICIA*/
-
-/*DISEÑO DEL FOOTER*/
+/* DISEÑO DEL FOOTER */
 .footer {
+    padding: 30px 0 0;
     background-color: #f8f8f8;
-    padding: 30px 0 0 0;
     border-top: 3px solid #0056b3;
 }
 
@@ -582,14 +718,12 @@ label {
 /* Logo en el footer */
 .footer-logo {
     width: 20%;
-    /* El logo ocupa el 20% del ancho */
+    padding: 15px 0;
     text-align: center;
-    /* Centra el logo dentro de su bloque */
 }
 
 .footer-logo img {
-    max-width: 150px;
-    /* Ajusta el tamaño del logo */
+    max-width: 120px;
     height: auto;
     display: inline-block;
 }
@@ -604,26 +738,21 @@ label {
     padding: 0 15px;
 }
 
-/* ENCABEZADOS */
 .footer-links h4 {
-    font-size: 20px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    font-weight: 550;
     color: #0056b3;
-    margin-bottom: 25px;
-    font-weight: 500;
-    border-bottom: 2px solid #00c3ff;
-    padding-bottom: 5px;
-    display: inline-block;
 }
 
-/* HIPERVÍNCULOS */
 .footer-links ul li a {
-    font-size: 18px;
-    text-decoration: none;
-    color: #333333;
-    display: block;
+    font-size: 14px;
     margin-bottom: 15px;
-    transition: all.3s ease;
     padding-bottom: 5px;
+    display: block;
+    text-decoration: none;
+    color: #333;
+    transition: padding-left 0.3s ease, color 0.3s ease;
 }
 
 .footer-links ul li a:hover {
@@ -631,23 +760,20 @@ label {
     padding-left: 6px;
 }
 
-/* REDES SOCIALES */
 .social-link a {
     display: inline-block;
-    min-height: 40px;
-    width: 40px;
-    background-color: rgba(255, 255, 255, 0.5);
     margin: 0 10px 10px 0;
-    text-align: center;
-    line-height: 40px;
+    width: 30px;
+    line-height: 30px;
     border-radius: 50%;
-    color: #333333;
-    transform: scale(1);
-    transition: all .3s ease;
+    text-align: center;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
 }
 
 .social-link a:hover {
-    color: #ffffff;
+    color: #fff;
     background-color: #0073e6;
     transform: scale(1.1);
 }
@@ -656,15 +782,15 @@ label {
 .footer-final {
     background-color: #0056b3;
     text-align: center;
-    font-size: 15px;
-    padding: 12px;
+    font-size: 14px;
+    padding: 10px;
     font-weight: bold;
-    color: #ffffff;
+    color: #fff;
     box-sizing: border-box;
 }
 
-/*RESPONSIVE DEL FOOTER*/
-@media(max-width : 991px) {
+/* RESPONSIVE */
+@media(max-width: 768px) {
     .footer-row {
         flex-direction: column;
         text-align: center;
@@ -677,12 +803,12 @@ label {
     }
 }
 
-/*PÁGINA DE NOSOTROS*/
+/* PÁGINA DE NOSOTROS */
 
-/*DISEÑO DE MISIÓN Y VISIÓN*/
+/* DISEÑO DE MISIÓN Y VISIÓN */
 .mision-vision {
-    background-color: #ffffff;
-    padding: 50px 20px;
+    background-color: #fff;
+    padding: 50px 70px;
     text-align: center;
 }
 
@@ -700,19 +826,16 @@ label {
 }
 
 .info {
-    background: white;
+    max-width: 350px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    max-width: 450px;
-    text-align: left;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-    /* Efecto hover */
 }
 
 .info:hover {
     transform: translateY(-5px);
-    /* Elevar ligeramente al pasar el mouse*/
 }
 
 .info-image {
@@ -754,4 +877,108 @@ label {
         flex-direction: column;
         align-items: center;
     }
+}
+
+/* DROPDOWN DE LOS CURSOS */
+.cursos-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px;
+}
+
+.course {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+}
+
+.course img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.course h3 {
+    color: #0073e6;
+    font-size: 1.3em;
+    padding: 20px;
+}
+
+.course p {
+    padding: 0 20px 20px 20px;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.course button {
+    background-color: #0073e6;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+    display: none;
+}
+
+.course button:hover {
+    background-color: #000cb3;
+}
+
+/* DROPDOWN DE LOS DIPLOMADOS */
+.diplomados-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px;
+}
+
+.diplo {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+}
+
+.diplo img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.diplo h3 {
+    color: #0073e6;
+    font-size: 1.3em;
+    padding: 20px;
+}
+
+.diplo p {
+    padding: 0 20px 20px 20px;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.diplo button {
+    background-color: #0073e6;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+    display: none;
+}
+
+.diplo button:hover {
+    background-color: #000cb3;
 }
