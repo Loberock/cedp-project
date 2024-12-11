@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEDP</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="/CSS/style.css">
     <script src="https://kit.fontawesome.com/1929fb97c5.js" crossorigin="anonymous"></script>
 </head>
 
@@ -17,19 +18,45 @@
             </a>
             <input type="checkbox" id="menu" />
             <label for="menu">
-                <img src="menu.png" class="menu-icono" alt="">
+                <img src="menu.png" class="menu-icono" alt="Menu">
             </label>
             <ul class="menu" id="Menu">
                 <li class="item"><a href="index.html">Inicio</a></li>
                 <li class="item"><a href="nosotros.html">Nosotros</a></li>
-                <li class="item"><a href="cursos.html">Cursos</a></li>
-                <li class="item"><a href="diplomados.html">Diplomados</a></li>
-                <li class="btn"><a href="login.html">Login</a></li>
+                <li class="item dropdown">
+                    <a class="dropdown-toggle">Cursos <i class="fa-solid fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="tecnologia.html">Tecnología</a></li>
+                        <li><a href="negocios.html">Negocios</a></li>
+                        <li><a href="productivos.html">Productivos</a></li>
+                        <li><a href="gestion.html">Gestión</a></li>
+                    </ul>
+                </li>
+                <li class="item dropdown">
+                    <a class="dropdown-toggle">Diplomados <i class="fa-solid fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="educacion.html">Educación</a></li>
+                        <li><a href="ingenieria.html">Ingeniería</a></li>
+                        <li><a href="salud.html">Salud</a></li>
+                        <li><a href="gerencia.html">Dirección y Gerencia</a></li>
+                    </ul>
+                </li>
+                <li class="btn"><a href="formulario.html">Contacto</a></li>
             </ul>
         </header>
 
         <main>
-            <section class="fondo"></section>
+            <section class="slider">
+                <div class="slides">
+                    <div class="slide" style="background-image: url('slider1.jpg');"></div>
+                    <div class="slide" style="background-image: url('slider2.jpg');"></div>
+                    <div class="slide" style="background-image: url('slider3.jpg');"></div>
+                    <div class="slide" style="background-image: url('slider4.jpg');"></div>
+                </div>
+                <!-- Botones de navegación -->
+                <button class="prev">&#10094;</button>
+                <button class="next">&#10095;</button>
+            </section>
 
             <section class="nosotros">
                 <div class="texto-nosotros">
@@ -44,7 +71,7 @@
                     <a href="nosotros.html" class="btn-nosotros">Saber más</a>
                 </div>
                 <div class="imagen-nosotros">
-                    <img src="nosotros.jpg" alt="">
+                    <img src="nosotros.jpg" alt="img nosotros">
                 </div>
             </section>
 
@@ -92,22 +119,22 @@
                     <div class="curso">
                         <img src="tecnologia.jpg" alt="">
                         <h3>Tecnología</h3>
-                        <a href="#" class="btn-cursos">Ver cursos</a>
+                        <a href="tecnologia.html" class="btn-cursos">Ver cursos</a>
                     </div>
                     <div class="curso">
                         <img src="negocios.jpg" alt="">
                         <h3>Negocios</h3>
-                        <a href="#" class="btn-cursos">Ver cursos</a>
+                        <a href="negocios.html" class="btn-cursos">Ver cursos</a>
                     </div>
                     <div class="curso">
                         <img src="productivos.jpg" alt="">
                         <h3>Productivos</h3>
-                        <a href="#" class="btn-cursos">Ver cursos</a>
+                        <a href="productivos.html" class="btn-cursos">Ver cursos</a>
                     </div>
                     <div class="curso">
                         <img src="gestion.jpg" alt="">
                         <h3>Gestión</h3>
-                        <a href="#" class="btn-cursos">Ver cursos</a>
+                        <a href="gestion.html" class="btn-cursos">Ver cursos</a>
                     </div>
                 </div>
             </section>
@@ -118,22 +145,22 @@
                     <div class="diplomado">
                         <img src="educacion.jpg" alt="">
                         <h3>Educación</h3>
-                        <a href="#" class="btn-diplomados">Ver diplomados</a>
+                        <a href="educacion.html" class="btn-diplomados">Ver diplomados</a>
                     </div>
                     <div class="diplomado">
                         <img src="ingenieria.jpg" alt="">
                         <h3>Ingeniería</h3>
-                        <a href="#" class="btn-diplomados">Ver diplomados</a>
+                        <a href="ingenieria.html" class="btn-diplomados">Ver diplomados</a>
                     </div>
                     <div class="diplomado">
                         <img src="salud.jpg" alt="">
                         <h3>Salud</h3>
-                        <a href="#" class="btn-diplomados">Ver diplomados</a>
+                        <a href="salud.html" class="btn-diplomados">Ver diplomados</a>
                     </div>
                     <div class="diplomado">
                         <img src="gerencia.jpg" alt="">
                         <h3>Dirección y Gerencia</h3>
-                        <a href="#" class="btn-diplomados">Ver diplomados</a>
+                        <a href="gerencia.html" class="btn-diplomados">Ver diplomados</a>
                     </div>
                 </div>
             </section>
@@ -150,25 +177,27 @@
                     <div class="footer-links">
                         <h4>Cursos</h4>
                         <ul>
-                            <li><a href="#">Tecnología</a></li>
-                            <li><a href="#">Negocios</a></li>
-                            <li><a href="#">Productivos</a></li>
-                            <li><a href="#">Gestión</a></li>
+                            <li><a href="tecnologia.html">Tecnología</a></li>
+                            <li><a href="negocios.html">Negocios</a></li>
+                            <li><a href="productivos.html">Productivos</a></li>
+                            <li><a href="gestion.html">Gestión</a></li>
                         </ul>
                     </div>
                     <div class="footer-links">
                         <h4>Diplomados</h4>
                         <ul>
-                            <li><a href="#">Educación</a></li>
-                            <li><a href="#">Ingeniería</a></li>
-                            <li><a href="#">Salud</a></li>
-                            <li><a href="#">Dirección y Gerencia</a></li>
+                            <li><a href="educacion.html">Educación</a></li>
+                            <li><a href="ingenieria.html">Ingeniería</a></li>
+                            <li><a href="salud.html">Salud</a></li>
+                            <li><a href="gerencia.html">Dirección y Gerencia</a></li>
                         </ul>
                     </div>
                     <div class="footer-links">
-                        <h4>Contacto</h4>
+                        <h4>Contáctanos</h4>
                         <ul>
-                            <li><a href="#">+51 983484694</a></li>
+                            <li><a
+                                    href="https://api.whatsapp.com/send/?phone=51933738449&text&type=phone_number&app_absent=0">+51
+                                    933 738 449</a></li>
                             <li><a href="#">informescedpsac@cedpsac.com</a></li>
                             <li><a>Mz H Lt 26, Las Dunas - Lambayeque</a></li>
                             <li><a>Lunes a Sábado de 8 AM a 8 PM</a></li>
