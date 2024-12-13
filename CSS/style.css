@@ -1,0 +1,1035 @@
+/* RESET DE LA WEB */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+/* DISEÑO DEL BODY */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* CADA SECCIÓN EN SU LUGAR */
+.container {
+    min-height: 100dvh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+/* PÁGINA DE INICIO */
+
+/* DISEÑO DE LA CABECERA */
+header {
+    width: 100%;
+    height: 100px;
+    padding: 0 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    transition: background-color 0.3s ease, position 0.3s ease;
+}
+
+.logo {
+    height: 80px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.item {
+    margin: 0 15px;
+    font-size: 20px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.item a {
+    text-decoration: none;
+    color: #000;
+}
+
+.item:hover {
+    transform: translateY(-3px);
+}
+
+.item:hover a {
+    color: #0056b3;
+}
+
+.item a.active {
+    color: #f26e00;
+    border-bottom: 2px solid #f26e00;
+}
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    cursor: default;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: transparent;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    list-style: none;
+    padding: 10px 0;
+    z-index: 1000;
+    border-radius: 5px;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-menu li {
+    padding: 5px 20px;
+}
+
+.item .dropdown-menu li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+}
+
+.dropdown-menu li a:hover {
+    color: #0056b3;
+}
+
+.dropdown-menu li a.active {
+    color: #f26e00;
+    border-bottom: 2px solid #f26e00;
+}
+
+.btn {
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(130deg, skyblue, blue);
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.btn:hover {
+    background: linear-gradient(130deg, blue, skyblue);
+    transform: scale(1.1);
+}
+
+.btn:hover a {
+    color: #fff;
+}
+
+#menu {
+    display: none;
+}
+
+.menu-icono {
+    width: 30px;
+}
+
+/* Solo visible en responsive */
+label {
+    cursor: pointer;
+    display: none;
+}
+
+/* RESPONSIVE DE LA CABECERA */
+@media(max-width : 991px) {
+    .menu {
+        padding: 30px;
+        position: absolute;
+        align-items: flex-start;
+        top: 100%;
+        left: 0;
+        right: 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        display: none;
+    }
+
+    label {
+        display: block;
+    }
+
+    .item {
+        margin: 0 0 20px 20px;
+        width: 100%;
+    }
+
+    .btn {
+        margin: 0 0 0 20px;
+        width: 130px;
+    }
+
+    #menu:checked~.menu {
+        display: flex;
+        /* Más consistente que "initial" */
+        flex-direction: column;
+    }
+
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        padding: 0;
+        margin-top: 10px;
+        width: 150px;
+    }
+
+    .dropdown-menu li {
+        padding: 10px 20px;
+    }
+}
+
+/* DISEÑO DEL SLIDER */
+.slider {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.slides {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    flex: 1 0 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Botones de navegación */
+button.prev,
+button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 5px;
+}
+
+button.prev {
+    left: 10px;
+}
+
+button.next {
+    right: 10px;
+}
+
+button.prev:hover,
+button.next:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .slider {
+        height: 80vh;
+    }
+
+    .slide {
+        height: 80vh;
+    }
+
+    button.prev,
+    button.next {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .slider {
+        height: 60vh;
+    }
+
+    .slide {
+        height: 60vh;
+    }
+
+    button.prev,
+    button.next {
+        font-size: 1rem;
+    }
+}
+
+/* DISEÑO DE LOS TÍTULOS */
+.title {
+    margin-top: 100px;
+    padding: 20px 0;
+    text-align: center;
+    background-color: #0056b3;
+}
+
+.title h1 {
+    color: #fff;
+    font-size: 35px;
+    padding: 0 50px;
+}
+
+/* FORMULARIO */
+.formulario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 150px 50px 50px 50px;
+    background: linear-gradient(130deg, skyblue, blue);
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.form-container h1 {
+    color: #0056b3;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-container p {
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group span {
+    font-size: 1rem;
+    color: #333;
+    padding: 10px 0 3px 0;
+}
+
+.form-group select,
+.form-group textarea,
+.form-group input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    resize: none;
+    transition: border-color 0.3s;
+}
+
+.form-group select:focus,
+.form-group textarea:focus,
+.form-group input:focus {
+    border-color: #0056b3;
+}
+
+form .btn-enviar {
+    margin: 15px auto 0 auto;
+    padding: 15px;
+    width: 100%;
+    max-width: 200px;
+    display: block;
+    text-align: center;
+    background: linear-gradient(130deg, skyblue, blue);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form .btn-enviar:hover {
+    background: linear-gradient(130deg, blue, skyblue);
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: none;
+}
+
+.error-message.active {
+    display: block;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 15px;
+    }
+
+    .form-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .form-container p,
+    .form-group span {
+        font-size: 0.9rem;
+    }
+
+    .form-group select,
+    .form-group textarea,
+    .form-group input {
+        padding: 8px;
+    }
+
+    form .btn-enviar {
+        font-size: 14px;
+        margin: auto;
+        padding: 10px;
+    }
+}
+
+/* DISEÑO DEL ENVIADO */
+
+.success-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    /* Fondo suave */
+    padding: 20px;
+}
+
+.success-section h1 {
+    font-size: 2.5rem;
+    /* Tamaño del título */
+    color: #4caf50;
+    /* Verde de éxito */
+    margin-bottom: 20px;
+}
+
+.success-section p {
+    font-size: 1.2rem;
+    color: #555;
+    /* Texto en tono gris */
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.success-section .btn-regresar {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 1rem;
+    color: #fff;
+    /* Texto blanco */
+    background-color: #007bff;
+    /* Azul del botón */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.success-section .btn-regresar:hover {
+    background-color: #0056b3;
+    /* Azul más oscuro */
+    transform: scale(1.05);
+    /* Efecto de zoom al pasar el mouse */
+}
+
+/* DISEÑO DE NOSOTROS */
+.nosotros {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 30px;
+    gap: 40px;
+}
+
+.texto-nosotros {
+    flex: 1;
+    color: #000;
+}
+
+.texto-nosotros h2 {
+    color: #0056b3;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.texto-nosotros p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.btn-nosotros {
+    display: inline-block;
+    background-color: #0056b3;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.btn-nosotros:hover {
+    background-color: #000cb3;
+    transform: scale(1.1);
+}
+
+.imagen-nosotros {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagen-nosotros img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+    .nosotros {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .texto-nosotros {
+        max-width: 750px;
+    }
+}
+
+/* DISEÑO DE POR QUÉ CEDPSAC */
+.porque-cedpsac {
+    text-align: center;
+    background-color: #f8f8f8;
+    padding: 50px;
+}
+
+.porque-cedpsac h2 {
+    color: #0056b3;
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+/* Contenedor de tarjetas */
+.tarjetas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Tarjeta individual */
+.tarjeta {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+}
+
+.icono {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.tarjeta h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.tarjeta p {
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .tarjetas {
+        max-width: 500px;
+        grid-template-columns: 1fr;
+    }
+}
+
+/* DISEÑO DE CURSOS */
+.nuestros-cursos {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fff;
+}
+
+.nuestros-cursos h2 {
+    color: #0056b3;
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+}
+
+.cursos-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.curso {
+    flex: 1 1 calc(25% - 20px);
+    /* Cuatro columnas */
+    max-width: 300px;
+    text-align: center;
+}
+
+.curso img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.curso h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+
+.btn-cursos {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 24px;
+    background-color: #0056b3;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: transform 0.3s ease;
+}
+
+.btn-cursos:hover {
+    background-color: #000cb3;
+    transform: scale(1.1);
+}
+
+/* RESPONSIVE DE CURSOS */
+@media (max-width: 991px) {
+    .curso {
+        flex: 1 1 calc(50% - 20px);
+        /* Dos columnas */
+        max-width: 305px;
+    }
+}
+
+@media (max-width: 768px) {
+    .curso {
+        flex: 1 1 100%;
+        /* Una columna */
+        max-width: 355px;
+    }
+}
+
+/* DISEÑO DE DIPLOMADOS */
+.nuestros-diplomados {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fff;
+}
+
+.nuestros-diplomados h2 {
+    color: #0056b3;
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+}
+
+.diplomados-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.diplomado {
+    flex: 1 1 calc(25% - 20px);
+    max-width: 300px;
+    text-align: center;
+}
+
+.diplomado img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.diplomado h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+
+.btn-diplomados {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 24px;
+    background-color: #0056b3;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: transform 0.3s ease;
+}
+
+.btn-diplomados:hover {
+    background-color: #000cb3;
+    transform: scale(1.1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+    .diplomado {
+        flex: 1 1 calc(50% - 20px);
+        max-width: 305px;
+    }
+}
+
+@media (max-width: 768px) {
+    .diplomado {
+        flex: 1 1 100%;
+        max-width: 355px;
+    }
+}
+
+/* DISEÑO DEL FOOTER */
+.footer {
+    padding: 30px 0 0;
+    background-color: #f8f8f8;
+    border-top: 3px solid #0056b3;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Logo en el footer */
+.footer-logo {
+    width: 20%;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.footer-logo img {
+    max-width: 120px;
+    height: auto;
+    display: inline-block;
+}
+
+.footer-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer-links {
+    width: 20%;
+    padding: 0 15px;
+}
+
+.footer-links h4 {
+    font-size: 16px;
+    margin-bottom: 20px;
+    font-weight: 550;
+    color: #0056b3;
+}
+
+.footer-links ul li a {
+    font-size: 14px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    display: block;
+    text-decoration: none;
+    color: #333;
+    transition: padding-left 0.3s ease, color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: #0073e6;
+    padding-left: 6px;
+}
+
+.social-link a {
+    display: inline-block;
+    margin: 0 10px 10px 0;
+    width: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.social-link a:hover {
+    color: #fff;
+    background-color: #0073e6;
+    transform: scale(1.1);
+}
+
+/* FOOTER-FINAL */
+.footer-final {
+    background-color: #0056b3;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+    font-weight: bold;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+    .footer-row {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-logo,
+    .footer-links {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+/* PÁGINA DE NOSOTROS */
+
+/* DISEÑO DE MISIÓN Y VISIÓN */
+.mision-vision {
+    background-color: #fff;
+    padding: 50px 70px;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    color: #0056b3;
+}
+
+.mision-vision-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.info {
+    max-width: 350px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.info:hover {
+    transform: translateY(-5px);
+}
+
+.info-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.info-text {
+    padding: 20px;
+}
+
+.info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #0073e6;
+    text-align: center;
+}
+
+.info p,
+.info ul {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.info ul li {
+    margin: 10px 0;
+}
+
+.info ul li strong {
+    color: #333;
+}
+
+/*RESPONSIVE DE MISIÓN, VISIÓN Y VALORES*/
+@media (max-width: 768px) {
+    .mision-vision-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* DROPDOWN DE LOS CURSOS */
+.cursos-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px;
+}
+
+.course {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+}
+
+.course img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.course h3 {
+    color: #0073e6;
+    font-size: 1.3em;
+    padding: 20px;
+}
+
+.course p {
+    padding: 0 20px 20px 20px;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.course button {
+    background-color: #0073e6;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+    display: none;
+}
+
+.course button:hover {
+    background-color: #000cb3;
+}
+
+/* DROPDOWN DE LOS DIPLOMADOS */
+.diplomados-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px;
+}
+
+.diplo {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+}
+
+.diplo img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.diplo h3 {
+    color: #0073e6;
+    font-size: 1.3em;
+    padding: 20px;
+}
+
+.diplo p {
+    padding: 0 20px 20px 20px;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.diplo button {
+    background-color: #0073e6;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+    display: none;
+}
+
+.diplo button:hover {
+    background-color: #000cb3;
+}
